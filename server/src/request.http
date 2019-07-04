@@ -1,0 +1,32 @@
+###
+GET http://localhost:7540
+
+###
+POST http://localhost:7540/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "hwanlee",
+  "password": "1324803"
+}
+
+###
+POST http://localhost:7540/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "hwanlee",
+  "password": "1324803"
+}
+
+###
+GET http://localhost:7540/api/auth/check?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZhY2VlMDg1NmY3Nzg4NDRmY2YxODQiLCJ1c2VybmFtZSI6Imh3YW5sZWUiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTUwNTAzNjU1LCJleHAiOjE1NTExMDg0NTUsImlzcyI6Ind3dy52bGFwLmNvbSIsInN1YiI6InVzZXJJbmZvIn0.OVYLdGaF8YMsDaNF8dJCxHPjVZmA40SfvOb1NyjytNw
+Content-Type: application/json
+
+{
+  "username": "hwanlee",
+  "password": "1324803"
+}
+
+###
+GET http://localhost:7540/api/user/list?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzZhY2VlMDg1NmY3Nzg4NDRmY2YxODQiLCJ1c2VybmFtZSI6Imh3YW5sZWUiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTUwNTAzNjU1LCJleHAiOjE1NTExMDg0NTUsImlzcyI6Ind3dy52bGFwLmNvbSIsInN1YiI6InVzZXJJbmZvIn0.OVYLdGaF8YMsDaNF8dJCxHPjVZmA40SfvOb1NyjytNw
