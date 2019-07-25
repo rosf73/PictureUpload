@@ -1,5 +1,9 @@
 # Google Vision API Key  
 
-È¯°æº¯¼ö¿¡ json ÆÄÀÏ °æ·Î¸¦ Ãß°¡ ÈÄ ¼­¹ö¸¦ µ¿ÀÛ½ÃÄÑ¾ß Vision API°¡ µ¿ÀÛ  
+È¯ï¿½æº¯ï¿½ï¿½ï¿½ï¿½ json ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ï¿½Ñ¾ï¿½ Vision APIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
 
 $env:GOOGLE_APPLICATION_CREDENTIALS="<DIR_PATH>/google_vision_api_key.json"
+
+or
+
+set GOOGLE_APPLICATION_CREDENTIALS=D:/PictureUpload/server/keys/google_vision_api_key.json

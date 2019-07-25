@@ -90,79 +90,74 @@ exports.post = async (req, res) => {
       postImageLink = configs.CONTENTS_FOLDER + postImageLink; // 저장될 폴더를 링크에 추가
       postMarkerLink = configs.CONTENTS_FOLDER + postMarkerLink
 
-      console.log(req.files[0]);
+      // ffmpeg(req.files[0].path) // 동영상 파일을 불러옴
+      // .on('end', () => { // 스크린샷이 촬영 완료되었을 경우
+      //   console.log('Screenshots taken');
 
-      ffmpeg(req.files[0].path) // 동영상 파일을 불러옴
-      .on('end', () => { // 스크린샷이 촬영 완료되었을 경우
-        console.log('Screenshots taken');
+      //   // 메인 이미지 파일 저장이 완료될 경우 marker이미지 생성
+      //   sharp(configs.ROOT_FOLDER + postImageLink).resize({width: 100, height: 100, fit: "fill"}).toFile(configs.ROOT_FOLDER + postMarkerLink)
+      //   .then( newFileInfo => {
+      //     //console.log(newFileInfo);
+      //     console.log('Success!');
+      //   })
+      //   .catch( err => {
+      //     //console.log(err);
+      //     console.log('Error occured!');
+      //   });
+      // })
+      // .screenshots({ // 동영상의 중간 부분을 캡쳐하여 메인 이미지를 만들어 저장
+      //   timestamps: ['50%'],
+      //   filename: postImageLink,
+      //   folder: configs.ROOT_FOLDER
+      // });
 
-        // 메인 이미지 파일 저장이 완료될 경우 marker이미지 생성
-        sharp(configs.ROOT_FOLDER + postImageLink).resize({width: 100, height: 100, fit: "fill"}).toFile(configs.ROOT_FOLDER + postMarkerLink)
-        .then( newFileInfo => {
-          //console.log(newFileInfo);
-          console.log('Success!');
-        })
-        .catch( err => {
-          //console.log(err);
-          console.log('Error occured!');
-        });
-      })
-      .screenshots({ // 동영상의 중간 부분을 캡쳐하여 메인 이미지를 만들어 저장
-        //timemarks:"50%",
-        timestamps: ['50%'],
-        filename: postImageLink,
-        folder: configs.ROOT_FOLDER,
-        size: '320x240'
-      });
+      // for (var i = 0; i <= 99; i += 33) { // 동영상 0%, 33%, 66%, 99% 간격 별 이미지를 분석 후 hiddenTagList를 만듬
+      //   var tempfilelink = configs.TEMP_FOLDER + filename.substring(0, idx) + '_temp.png'; // 임시 이미지 파일을 저장할 링크
+      //   var percent = String(i) + '%';
 
-      for (var i = 0; i <= 99; i += 33) { // 동영상 0%, 33%, 66%, 99% 간격 별 이미지를 분석 후 hiddenTagList를 만듬
-        var tempfilelink = configs.TEMP_FOLDER + filename.substring(0, idx) + '_temp.png'; // 임시 이미지 파일을 저장할 링크
-        var percent = String(i) + '%';
+      //   const p = new Promise((resolve, reject) => {
+      //     ffmpeg(req.files[0].path)
+      //       .on('error', (err) => {
+      //         reject(err);
+      //       })
+      //       .on('end', () => { // 이미지 촬영이 완료되었을 경우 resolve 처리
+      //         resolve();
+      //       })
+      //       .screenshots({ // 동영상에서 percent 부분을 캡처하여 임시 이미지 파일 저장
+      //         //timemarks:"50%",
+      //         timestamps: [percent],
+      //         filename: tempfilelink,
+      //         folder: configs.ROOT_FOLDER
+      //       });
+      //   });
 
-        const p = new Promise((resolve, reject) => {
-          ffmpeg(req.files[0].path)
-            .on('error', (err) => {
-              reject(err);
-            })
-            .on('end', () => { // 이미지 촬영이 완료되었을 경우 resolve 처리
-              resolve();
-            })
-            .screenshots({ // 동영상에서 percent 부분을 캡처하여 임시 이미지 파일 저장
-              //timemarks:"50%",
-              timestamps: [percent],
-              filename: tempfilelink,
-              folder: configs.ROOT_FOLDER,
-              size: '320x240'
-            });
-        });
+      //   var success = await (p).then(result => {
+      //     //console.log("Success!");
+      //     return true;
+      //   }).catch(error => {
+      //     //console.log("Fail!");
+      //     return false;
+      //   });
 
-        var success = await (p).then(result => {
-          //console.log("Success!");
-          return true;
-        }).catch(error => {
-          //console.log("Fail!");
-          return false;
-        });
+      //   if (success) {
+      //     const [result] = await client.labelDetection(configs.ROOT_FOLDER + tempfilelink); // 임시 이미지 파일을 분석
+      //     const labels = result.labelAnnotations;
 
-        if (success) {
-          const [result] = await client.labelDetection(configs.ROOT_FOLDER + tempfilelink); // 임시 이미지 파일을 분석
-          const labels = result.labelAnnotations;
+      //     const hiddenTagList = labels.filter(label => { // 분석 결과 score(점수)가 SCORE_LIMIT 이상일 경우만 필터링
+      //       if (label.score > configs.SCORE_LIMIT) {
+      //         return true;
+      //       }
+      //       return false;
+      //     }).map(label => { // 분석 결과의 설명 부분을 반환
+      //       return label.description;
+      //     });
 
-          const hiddenTagList = labels.filter(label => { // 분석 결과 score(점수)가 SCORE_LIMIT 이상일 경우만 필터링
-            if (label.score > configs.SCORE_LIMIT) {
-              return true;
-            }
-            return false;
-          }).map(label => { // 분석 결과의 설명 부분을 반환
-            return label.description;
-          });
-
-          for (var j = 0; j < hiddenTagList.length; j++)
-          { // 분석 결과를 dictinary 변수에 기록
-            hiddenTagSet[hiddenTagList[j]] = 1;
-          }
-        }
-      }
+      //     for (var j = 0; j < hiddenTagList.length; j++)
+      //     { // 분석 결과를 dictinary 변수에 기록
+      //       hiddenTagSet[hiddenTagList[j]] = 1;
+      //     }
+      //   }
+      // }
 
       contentsIDList.push(new mongoose.Types.ObjectId()); // 게시글의 컨텐츠 ID 목록애 ID 정보 push
 

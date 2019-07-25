@@ -49,7 +49,7 @@ export default class MainScreen extends Component {
                 onPress={()=>{Actions.reset('main');}}
                 background={TouchableNativeFeedback.Ripple("", true)}>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Image style={{ width: 45, height: 45, resizeMode: 'stretch' }} source={require('../../resources/imgs/Vlap.png')}/>
+                    <Image style={{ width: 45, height: 45, resizeMode: 'stretch' }} source={require('../../resources/imgs/Picup.png')}/>
                 </View>
             </TouchableNativeFeedback>,
         headerLeft: 

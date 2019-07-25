@@ -88,3 +88,5 @@ typings/
 log
 
 # End of https://www.gitignore.io/api/node
+
+picupPW.pem

@@ -142,7 +142,7 @@ export default class RegisterScreen extends Component {
             <View style={styles.container}>
                 <Loader loading={this.state.loading} />
 
-                <Image style={{ width: 150, height: 150, resizeMode: 'stretch', marginBottom: 40 }} source={require('../../resources/imgs/Vlap.png')}/>
+                <Image style={{ width: 150, height: 150, resizeMode: 'stretch', marginBottom: 40 }} source={require('../../resources/imgs/Picup.png')}/>
                 <TextInput style={styles.text} onChangeText={(nickname)=>{this.setState({nickname})}} value={this.state.nickname}
                 placeholder="이름" placeholderTextColor="#FFFFFF"/>
                 <TextInput style={styles.text} onChangeText={(email)=>{this.setState({email})}} value={this.state.email}

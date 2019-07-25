@@ -45,7 +45,7 @@ class LoginScreen extends Component<Props> {
         <TouchableNativeFeedback 
                 onPress={()=>{Actions.reset('main');}}
                 background={TouchableNativeFeedback.Ripple("", true)}>
-        <Image style={{ width: 150, height: 150, resizeMode: 'stretch', marginBottom: 40 }} source={require('../../resources/imgs/Vlap.png')}/>
+        <Image style={{ width: 150, height: 150, resizeMode: 'stretch', marginBottom: 40 }} source={require('../../resources/imgs/Picup.png')}/>
         </TouchableNativeFeedback>
         <LoginButton
           onLoginFinished={

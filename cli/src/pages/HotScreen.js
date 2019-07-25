@@ -247,7 +247,7 @@ class HotScreen extends Component<Props> {
                 onPress={this.initSelectTag}
                 activeOpacity={0.8}>
                 <View style={styles.info}>
-                  <Image style={styles.markerimage} source={require('../../resources/imgs/Vlap.png')}/>
+                  <Image style={styles.markerimage} source={require('../../resources/imgs/Picup.png')}/>
                   <Text style={text_style}>{'전체'}</Text>
                 </View>
             </TouchableOpacity>

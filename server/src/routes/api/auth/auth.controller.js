@@ -201,10 +201,11 @@ exports.login = (req, res) => {
 
   const secret = req.app.get('jwt-secret')
 
-  console.log(userid);
+  let mem = '';
   // check the member info & generate the jwt
       // check the member info & generate the jwt
   const check = (member) => {
+    mem = member;
     if(utils.isEmpty(member)) {
       console.log(member);
       // user does not exist
@@ -213,7 +214,6 @@ exports.login = (req, res) => {
     } else {
       // user exists, check the password
       if(member.verify(password)) {
-        //console.log("뀨뀨꺄꺄");
         // create a promise that generates jwt asynchronously
         const p = new Promise((resolve, reject) => {
           jwt.sign({
@@ -231,9 +231,10 @@ exports.login = (req, res) => {
             resolve(token)
           })
         });
-        return p
+        console.log(member);
+        return p;
       } else {
-        throw new Error('login failed')
+        throw new Error('login failed');
       }
     }
   }
@@ -242,7 +243,8 @@ exports.login = (req, res) => {
   const respond = (token) => {
       res.json({
           message: 'logged in successfully',
-          token
+          token,
+          memberID: mem._id
       })
   }
 
